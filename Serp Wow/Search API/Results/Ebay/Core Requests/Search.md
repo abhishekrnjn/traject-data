@@ -1,0 +1,21 @@
+Ebay Search Results
+-------------------
+
+DESKTOPTABLETMOBILESerpWow parses Ebay search results when the `engine=ebay` request parameter is set.
+
+![](https://apiimages.imgix.net/serpwow/images/png/docs/ebay_search.png?auto=format&ixlib=react-9.5.1-beta.1&w=600)Ebay Search ResultsBelow is an example of how Ebay search results are represented in the SerpWow result JSON:
+
+{"request\_info":{...}"search\_metadata":{...}"search\_parameters":{...}"ebay\_results":[...]"pagination":{...}}Copy### 
+
+SerpWow returns the following properties for `engine=ebay` requests:
+
+| Property | Type | Description |
+| ebay\_results | array | An array of Ebay Search Result objects, containing each of the product results shown on the Search Results page. The Ebay Search Result object has the following properties:positionnumberThe position of the result on the search results page.titlestringThe product name.epidstringThe Ebay product ID (EPID) for the listing.linkstringThe product page link.imagestringA link to the image of the product.hotnessstringThe value of the 'hotness' entry shown next to the product listing.conditionstringThe condition of the product in the listing.is\_auctionbooleanTrue/false indicating whether this is an auction-format listing.buy\_it\_nowbooleanTrue/false indicating whether this listing offers a Buy-It-Now price.free\_returnsbooleanTrue/false indicating whether this listing offers free returns.sponsoredbooleanTrue/false indicating whether this listing is sponsored (i.e. promoted).best\_offer\_acceptedbooleanSet to true when the "Best Offer accepted" text is shown next to the search result.best\_offerbooleanSet to true when the "Best Offer" text is shown next to the search result (different from best\_offer\_accepted in that just "Best Offer" is shown, not "Best Offer Accepted").is\_rewritten\_resultbooleanSet to true when this search result appears beneath the "Results matching fewer words" banner (meaning the search result doesn't exactly match the search\_term and has been suggested as an alternative). An example of the "Results matching fewer words banner is shown below.If you wish to exlude rewritten results use the allow\_rewritten\_results=false request parameter.item\_locationstringThe item location, if shown next to the search result.ratingnumberThe overall rating of the product, out of 5.ratings\_totalnumberThe total number of customer ratings the product has received.shipping\_costnumberA number describing the shipping cost of the item.pricesarray| Prices Array | The prices array contains details about the products pricing, as shown underneath the product title. It is an array of price objects, the properties of which are described below: |
+| --- | --- |
+symbolstringThe currency symbol, i.e. $ for USD.valuenumberThe price of the Offer.currencystringThe currency of the Offer as a ISO 4217 currency code.rawstringThe raw price as displayed on the Offer listing.namestringThe name of the price if applicable, for example "low" and "high" in the case of a range price. If the name property is empty then this price is the only price shown against the product.endedobject| Ended Object | An object describing how the listing ended, if shown. Typically displayed when the completed\_items=true request parameter is used. The properties of the ended object are described below: |
+| --- | --- |
+typestringSet to ended when the listing was shown as "Ended", set to sold when the listing was shown as "Sold". Can be used as an indicator of whether listing ended naturally, or resulted in a sale.dateobjectAn object describing the date on which the listing ended naturally or was sold. Contains a string property raw containing the raw date string of the listing end as shown next to the search result.priceobjectA price object representing the first item in the prices array. This is normally the "main" or "lowest" (in the case of a range) price for the product and is included as a convienience to make extracting the main price easier. |
+| pagination | object | An object containing details of the pagination section of the page.currentnumberThe current page number, if shown. |
+Next Steps
+
+* [Ebay Search Parameters](/docs/search-api/searches/ebay/search)
